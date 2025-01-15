@@ -1,0 +1,13 @@
+p {
+    color: black;
+    font-size: 1.5rem;
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the start */
+    align-items: center; /* Center horizontally */
+    height: calc(100vh - 100px); /* Adjust height to account for navbar */
+    padding-top: 60px; /* Move hero content lower by increasing this value */
+}

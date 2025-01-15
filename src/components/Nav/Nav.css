@@ -1,0 +1,28 @@
+.nav {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    padding: 0.5rem 2rem; 
+    position: relative; 
+    margin-top: 100px; /* Set top margin to 100px */
+    margin-left: 300px; /* Set left margin to 300px */
+    margin-right: 300px; /* Set right margin to 300px */
+}
+
+.logo {
+    position: relative; 
+    top: -4rem; 
+    left: 0rem; 
+}
+
+.logo img {
+    height: 250px; 
+    width: 250px;
+}
+
+.name {
+    flex-grow: 1; 
+    text-align: center; 
+    margin-left: -15px; 
+    color: black;
+}
