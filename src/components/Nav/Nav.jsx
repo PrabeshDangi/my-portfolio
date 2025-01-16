@@ -1,18 +1,27 @@
-import React from 'react'
-import logo from '../../assets/logooo.png'
-import './Nav.css'
+import { Link } from "react-router-dom";
+import "./Nav.css";
+import logo from "../../assets/logooo.png";
+import preview from "../../assets/looking-up.jpg";
 
 const Nav = () => {
   return (
-    <div className='nav'>
-    <div className="logo">
-        <img src={logo} alt='' />
-      </div>
-      <div className="name">
-    <h3>Lorem Ipsum</h3>
-    </div>
-    </div>
-  )
-}
+    <nav className="navbar">
+      <div className="container">
+        <div className="nav-content">
+          <Link to="/" className="nav-logo">
+            <img src={logo} alt="Logo" />
+          </Link>
 
-export default Nav
+          <div className="nav-name-container">
+            <span className="nav-name">Your Name</span>
+            <div className="logo-preview">
+              <img src={preview} alt="Logo Preview" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Nav;
