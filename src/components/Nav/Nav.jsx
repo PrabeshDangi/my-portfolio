@@ -9,7 +9,7 @@ const Nav = () => {
         <img src={logo} alt='' />
       </div>
       <div className="name">
-    <h3>Dangee Prabesh</h3>
+    <h3>Lorem Ipsum</h3>
     </div>
     </div>
   )

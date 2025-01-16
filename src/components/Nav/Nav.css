@@ -1,12 +1,9 @@
 .nav {
     display: flex;
-    justify-content: center; 
-    align-items: flex-start; 
-    padding: 0.5rem 2rem; 
     position: relative; 
-    margin-top: 100px; /* Set top margin to 100px */
-    margin-left: 300px; /* Set left margin to 300px */
-    margin-right: 300px; /* Set right margin to 300px */
+    margin-top: 50px; 
+    flex-direction: row;
+    justify-content: space-between;    
 }
 
 .logo {
@@ -16,13 +13,32 @@
 }
 
 .logo img {
-    height: 250px; 
-    width: 250px;
+    height: 200px; 
+    width: 200px;
 }
 
 .name {
-    flex-grow: 1; 
-    text-align: center; 
-    margin-left: -15px; 
+    flex-grow: 0.6; 
     color: black;
+}
+
+@media screen and (max-width: 600px) {
+    .nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .logo {
+        top: 2rem; 
+    }
+    
+    .logo img {
+        height: 200px; 
+        width: 200px;
+    }
+    
+    .name{
+       display: none;
+    }
 }

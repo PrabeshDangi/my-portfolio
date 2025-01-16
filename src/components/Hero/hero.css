@@ -1,13 +1,29 @@
 p {
     color: black;
-    font-size: 1.5rem;
+    font-size: 1rem;
+    text-align: justify;
+    padding: 1.5rem 1.5rem 0rem 1.5rem;
 }
 
 .hero {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Align content to the start */
-    align-items: center; /* Center horizontally */
-    height: calc(100vh - 100px); /* Adjust height to account for navbar */
-    padding-top: 60px; /* Move hero content lower by increasing this value */
+    justify-content: flex-start;
+    scroll-behavior: smooth; 
+}
+
+@media screen and (min-width: 600px) {
+    .hero {
+            align-items: center; 
+            justify-content: center; 
+            max-width: 80%;
+            margin: 0rem 0rem 0rem 5rem;     
+    }
+
+    .hero p{
+        text-justify: center;
+        text-align: justify;
+        margin: 0rem 0rem 5rem 5rem;
+    }
+
 }

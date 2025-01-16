@@ -1,6 +1,6 @@
 import './App.css'
 import { BrowserRouter as Router,  Route, Routes } from "react-router-dom";
-import Hero from './components/hero/hero';
+import Hero from './components/Hero/Hero';
 import Nav from './components/Nav/Nav';
 function App() {
   return (
