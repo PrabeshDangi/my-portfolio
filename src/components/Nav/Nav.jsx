@@ -13,7 +13,7 @@ const Nav = () => {
           </Link>
 
           <div className="nav-name-container">
-            <span className="nav-name">Your Name</span>
+            <span className="nav-name">Mr.  Dangi</span>
             <div className="logo-preview">
               <img src={preview} alt="Logo Preview" />
             </div>
