@@ -4,13 +4,13 @@ const Hero = () => {
   return (
     <section className="">
       <div className="flex-1 space-y-6 max-w-3xl">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900">
-          Hi, I'm <span className="text-emerald-600">Prabesh Dangi</span> 👋
+        <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground dark:text-background">
+          Hi, I'm <span className="text-primary">Prabesh Dangi</span> 👋
         </h1>
-        <h2 className="text-2xl md:text-3xl text-slate-700 font-medium">
+        <h2 className="text-2xl md:text-3xl text-foreground dark:text-background font-medium">
           Backend Developer
         </h2>
-        <div className="space-y-4 text-lg text-slate-600 leading-relaxed">
+        <div className="space-y-4 text-lg text-foreground/40 dark:text-background leading-relaxed">
           <p className="">
             I'm a backend developer with a passion for building scalable and
             efficient systems. I'm a quick learner and I'm always looking to
@@ -21,7 +21,7 @@ const Hero = () => {
             <Link
               to="https://aitc.ai/"
               target="_blank"
-              className="text-emerald-600"
+              className="text-primary"
             >
               AITC{" "}
               <img

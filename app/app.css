@@ -1,48 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&display=swap");
 @import "tailwindcss";
 
 @theme {
-  /* Font configuration */
-    --font-sans: "Host Grotesk", ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-/* Light mode colors */
-  /* --color-background: oklch(100% 0 0);
-  --color-foreground: oklch(32% 0 240);
-  --color-muted: oklch(96% 0 0);
-  --color-muted-foreground: oklch(60% 0 240);
-  --color-accent: oklch(70% 0.2 160);
-  --color-accent-foreground: oklch(100% 0 0); */
-}
+  --font-sans: "Host Grotesk", sans-serif;
 
-/* .dark {
-  --color-background: oklch(20% 0.02 240);
-  --color-foreground: oklch(95% 0.01 240);
-  --color-muted: oklch(30% 0.05 240);
-  --color-muted-foreground: oklch(60% 0.01 240);
-  --color-popover: oklch(25% 0.05 240);
-  --color-popover-foreground: oklch(95% 0.01 240);
-  --color-card: oklch(25% 0.05 240);
-  --color-card-foreground: oklch(95% 0.01 240);
-  --color-border: oklch(30% 0.05 240);
-  --color-input: oklch(30% 0.05 240);
-  --color-primary: oklch(80% 0.1 240);
-  --color-primary-foreground: oklch(20% 0.01 240);
-  --color-secondary: oklch(30% 0.05 240);
-  --color-secondary-foreground: oklch(95% 0.01 240);
-  --color-accent: oklch(30% 0.05 240);
-  --color-accent-foreground: oklch(95% 0.01 240);
-  --color-destructive: oklch(40% 0.2 30);
-  --color-destructive-foreground: oklch(95% 0.01 240);
-  --color-ring: oklch(80% 0.1 240);
+    --container-2xl: 50rem;
+    
+      --color-foreground: oklch(100% 0 0);
+      --color-background: oklch(20% 0.02 240);
 
+  --color-primary: oklch(60% 0.15 160);
+    --color-primary-foreground: oklch(98% 0.02 240);
+    --color-secondary: oklch(60% 0.15 240);
+    --color-secondary-foreground: oklch(98% 0.02 160);
+  --color-muted: oklch(96% 0.02 240);
+    --color-muted-foreground: oklch(60% 0.1 240);
+    --color-accent: oklch(70% 0.2 160);
+    --color-accent-foreground: oklch(98% 0.02 160);
+    --color-border: oklch(90% 0.02 240);
+    --color-input: oklch(90% 0.02 240);
+    --color-ring: oklch(70% 0.15 240);
+    --color-destructive: oklch(54% 0.2 30);
+    --color-destructive-foreground: oklch(98% 0.01 30);
+    --color-background-light: oklch(1 0 0);
+    --color-text-light: oklch(0.32 0 0);
+    --color-background-dark: oklch(0.22 0 0);
+    --color-text-dark: oklch(0.98 0 0);
+  }
+@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
-  --gradient-blue: linear-gradient(to top left, #9CECFB, #65C7F7, #0052D4);
-} */
-
-html {
-  @apply antialiased;
-}
-
-body {
-  @apply bg-[--color-background] text-[--color-foreground] transition-colors duration-300;
+@layer base {
+  body {
+    @apply bg-background text-foreground dark:bg-foreground dark:text-background;
+    }
 }
