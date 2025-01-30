@@ -6,12 +6,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
-
 import type { Route } from "./+types/root";
 import "./app.css";
 import Nav from "./components/Nav/Nav";
 import PageLinks from "./components/PageLinks/PageLinks";
-import { ThemeProvider } from "./context/theme-provider";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -36,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -44,17 +42,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
+function App() {
   return (
-    <main className="container mx-auto px-6">
+    <main className="container max-w-4xl mx-auto px-6">
       <Nav />
-      <div className="container mx-auto mt-8 md:mt-16">
+      <div className="mt-8 md:mt-16">
         <Outlet />
       </div>
       <PageLinks />
     </main>
   );
 }
+
+export default App;
+
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let message = "Oops!";
