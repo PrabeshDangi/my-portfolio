@@ -11,6 +11,7 @@ import type { Route } from "./+types/root";
 import "./app.css";
 import Nav from "./components/Nav/Nav";
 import PageLinks from "./components/PageLinks/PageLinks";
+import { ThemeProvider } from "./context/theme-provider";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -35,7 +36,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
         <ScrollRestoration />
         <Scripts />
       </body>
@@ -45,13 +46,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
-    <>
+    <main className="container mx-auto px-6">
       <Nav />
-      <main className="min-h-screen">
+      <div className="container mx-auto mt-8 md:mt-16">
         <Outlet />
-      </main>
+      </div>
       <PageLinks />
-    </>
+    </main>
   );
 }
 
