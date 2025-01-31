@@ -1,17 +1,21 @@
 import Hero from "~/components/Hero/Hero";
 import type { Route } from "./+types/home";
+import { generateMetadata } from "~/utils/metadata";
+
 
 export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Prabesh" },
-    {
-      name: "Prabesh Dangi",
-      content:
-        "Welcome to Prabesh Dangi's Portfolio! A backend developer with a passion for creating robust and scalable applications.",
-    },
-  ];
+  return generateMetadata({
+    title: "Prabesh Dangi",
+    description: "Prabesh Dangi's personal website",
+    path: "",
+  });
 }
 
 export default function Home() {
   return <Hero />;
 }
+
+// Might refer later
+// export const generateMetaData = (data: MetaDescriptor[]) => {
+//   return [...data];
+// };

@@ -10,7 +10,7 @@ const Hero = () => {
         <h2 className="text-2xl md:text-3xl text-foreground dark:text-background font-medium">
           Backend Developer
         </h2>
-        <div className="space-y-4 text-lg text-foreground/40 dark:text-background leading-relaxed">
+        <div className="space-y-4 text-lg text-foreground dark:text-background leading-relaxed">
           <p className="">
             I'm a backend developer with a passion for building scalable and
             efficient systems. I'm a quick learner and I'm always looking to
