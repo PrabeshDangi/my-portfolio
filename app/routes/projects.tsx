@@ -1,16 +1,22 @@
 import { generateMetadata } from "~/utils/metadata";
-import { ProjectsPage } from "~/pages/ProjectsPage";
-import { projects } from "content/projects";
+import type { Route } from "./+types/projects";
+import { getAllProjects } from "~/utils/mdx";
+import ProjectsPage from "~/pages/ProjectsPage";
 
-export function meta() {
-  return generateMetadata({
+export const meta = () =>
+  generateMetadata({
     title: "Projects",
-    description:
-      "Explore my portfolio of projects and development work. See what I've built and learn about my technical expertise.",
+    description: "Check out my latest projects and experiments.",
     path: "/projects",
   });
+
+export async function loader() {
+  const projects = await getAllProjects();
+  return { projects };
 }
 
-export default function Projects() {
+export default function Projects({
+  loaderData: { projects },
+}: Route.ComponentProps) {
   return <ProjectsPage projects={projects} />;
 }

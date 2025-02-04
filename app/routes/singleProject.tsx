@@ -1,12 +1,21 @@
 import { generateMetadata } from "~/utils/metadata";
 import { Link } from "react-router";
 import type { Route } from "./+types/singleProject";
-import { projects } from "content/projects";
+import { getMDXComponent } from "mdx-bundler/client";
+import { getProject } from "~/utils/mdx";
+import { useMemo } from "react";
 
-export function meta({ params }: Route.MetaArgs) {
-  const project = projects.find((p) => p.slug === params.slug);
+export async function loader({ params }: Route.LoaderArgs) {
+  try {
+    const { code, frontmatter } = await getProject(params.slug);
+    return { code, frontmatter };
+  } catch (error) {
+    throw new Response("Project not found", { status: 404 });
+  }
+}
 
-  if (!project) {
+export function meta({ data }: Route.MetaArgs) {
+  if (!data) {
     return generateMetadata({
       title: "Project Not Found",
       description: "The requested project could not be found.",
@@ -14,64 +23,70 @@ export function meta({ params }: Route.MetaArgs) {
     });
   }
 
+  const { frontmatter } = data;
   return generateMetadata({
-    title: project.title,
-    description: project.description,
-    path: `/projects/${project.slug}`,
+    title: frontmatter.title,
+    description: frontmatter.description,
+    path: `/projects/${frontmatter.slug}`,
   });
 }
 
-export default function ProjectPage({ params }: Route.ActionArgs) {
-  const project = projects.find((p) => p.slug === params.slug);
-
-  if (!project) {
-    return <div>Project not found</div>;
-  }
+export default function SingleProjectPage({
+  loaderData: data,
+}: Route.ComponentProps) {
+  const Component = useMemo(() => getMDXComponent(data.code), [data.code]);
+  const { frontmatter } = data;
 
   return (
-    <article className="max-w-4xl mx-auto px-4 py-8">
-      {project.image && (
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-64 md:h-96 object-cover rounded-lg mb-8"
-        />
-      )}
-      <h1 className="text-4xl font-bold mb-4">{project.title}</h1>
-      <p className="text-lg leading-relaxed">{project.description}</p>
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
-      <div className="flex gap-4 mb-8">
-        {project.github && (
-          <Link
-            to={project.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            View on GitHub
-          </Link>
+    <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="mb-8">
+        {frontmatter.image && (
+          <img
+            src={frontmatter.image}
+            alt={frontmatter.title}
+            className="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+          />
         )}
-        {project.demo && (
-          <Link
-            to={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            Live Demo
-          </Link>
+        <h1 className="text-4xl font-bold mt-6 mb-2">{frontmatter.title}</h1>
+        <div className="flex flex-wrap gap-2 mb-4">
+          {frontmatter.tags?.map((tag: string) => (
+            <span
+              key={tag}
+              className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+        {(frontmatter.github || frontmatter.demo) && (
+          <div className="flex gap-4 mb-6">
+            {frontmatter.github && (
+              <a
+                href={frontmatter.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                GitHub Repository
+              </a>
+            )}
+            {frontmatter.demo && (
+              <a
+                href={frontmatter.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary hover:underline"
+              >
+                Live Demo
+              </a>
+            )}
+          </div>
         )}
       </div>
-      <p className="text-lg leading-relaxed">{project.content}</p>
-    </article>
+
+      <article className="prose prose-lg dark:prose-invert prose-headings:text-primary prose-a:text-primary hover:prose-a:text-primary/80 prose-pre:bg-muted prose-pre:p-4 prose-pre:rounded-lg max-w-none">
+        <Component />
+      </article>
+    </div>
   );
 }

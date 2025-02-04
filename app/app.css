@@ -19,11 +19,75 @@
     --color-ring: oklch(70% 0.15 240);
     --color-destructive: oklch(54% 0.2 30);
     --color-destructive-foreground: oklch(98% 0.01 30);
+
 }
-@variant dark (&:where([data-theme="dark"], [data-theme="dark"], .dark, *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @layer base {
   body {
     @apply bg-background text-foreground dark:bg-foreground dark:text-background transition-colors duration-200;
     }
+}
+
+/* MDX Content Styling */
+.prose {
+  @apply text-foreground;
+}
+
+.prose code {
+  @apply px-1 py-0.5 rounded bg-muted text-foreground;
+}
+
+.prose pre code {
+  @apply p-0 bg-transparent;
+}
+
+.prose img {
+  @apply rounded-lg shadow-lg;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply font-bold scroll-mt-20;
+}
+
+.prose h1 {
+  @apply text-4xl mb-8;
+}
+
+.prose h2 {
+  @apply text-3xl mt-12 mb-6;
+}
+
+.prose h3 {
+  @apply text-2xl mt-8 mb-4;
+}
+
+.prose p {
+  @apply mb-6 leading-relaxed;
+}
+
+.prose ul,
+.prose ol {
+  @apply my-6 ml-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-primary pl-4 italic my-6;
+}
+
+/* Dark mode adjustments */
+.dark .prose {
+  @apply text-background;
+}
+
+
+.dark .prose pre code {
+  @apply bg-transparent;
 }

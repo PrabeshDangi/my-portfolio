@@ -1,9 +1,9 @@
 import { links } from "content/links";
 import { Link } from "react-router";
 import type { Route } from "./+types/links";
-import { BASE_URL, generateMetadata } from "~/utils/metadata";
+import { generateMetadata } from "~/utils/metadata";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ params }: Route.MetaArgs) {
   return [
     generateMetadata({
       title: "Links",

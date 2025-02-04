@@ -4,7 +4,7 @@ import type { Project } from "~/types/project";
 import { FaExternalLinkAlt } from "react-icons/fa";
 import { VscGithub } from "react-icons/vsc";
 
-export function ProjectsPage({ projects }: { projects: Project[] }) {
+export default function ProjectsPage({ projects }: { projects: Project[] }) {
   const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -32,10 +32,10 @@ export function ProjectsPage({ projects }: { projects: Project[] }) {
         Projects
       </h1>
       <div className="relative">
-        <div className="absolute left-2.5 md:left-8 top-0 bottom-6 md:bottom-10 w-[2px] bg-border/70">
+        <div className="absolute left-2.5 md:left-8 top-0 bottom-0 w-[2px] bg-border/70">
           <div
             className="absolute top-0 left-0 w-full bg-primary transition-all duration-200 ease-out"
-            style={{ height: `${scrollProgress + 8}%` }}
+            style={{ height: `${scrollProgress}%` }}
           />
         </div>
 
